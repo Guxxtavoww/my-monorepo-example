@@ -13,7 +13,7 @@ export function createNullableTransform<
     .transform((value) => (isNullableValue(value) ? undefined : value));
 }
 
-export { ZodSchema, ZodTypeDef };
+export { ZodSchema, ZodTypeDef, z };
 
 export const numberSchema = z.number().safe('Value is not safe');
 export const stringSchema = z.string().trim();
