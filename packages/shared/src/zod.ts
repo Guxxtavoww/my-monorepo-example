@@ -1,11 +1,9 @@
-import { type ZodSchema, type ZodTypeDef, z } from 'zod';
+import { z, type ZodSchema, type ZodTypeDef } from 'zod';
 
-import { isNullableValue } from './is-nullable-value.util';
-
-export { ZodTypeDef, ZodSchema };
+import { isNullableValue } from './index';
 
 export function createNullableTransform<
-  TOutput = unknown,
+  TOutput = any,
   TDef extends ZodTypeDef = ZodTypeDef,
   TInput = TOutput,
 >(schema: ZodSchema<TOutput, TDef, TInput>) {
@@ -15,11 +13,8 @@ export function createNullableTransform<
     .transform((value) => (isNullableValue(value) ? undefined : value));
 }
 
-/**
- * -----------------------------------------------------------------------------
- * Default Schemas
- * -----------------------------------------------------------------------------
- */
+export { ZodSchema, ZodTypeDef };
+
 export const numberSchema = z.number().safe('Value is not safe');
 export const stringSchema = z.string().trim();
 export const emailStringSchema = stringSchema.email();
@@ -51,7 +46,7 @@ export const stringToIntegerSchema = stringSchema
 
       return Number.isInteger(numberfyedValue);
     },
-    { message: 'Value must be int' }
+    { message: 'Value must be int' },
   )
   .transform(Number);
 
@@ -66,7 +61,7 @@ export const stringToFloatSchema = stringSchema
         numberfyedValue % 1 !== 0 || /\.\d+/.test(numberfyedValue.toString())
       );
     },
-    { message: 'Value must be float' }
+    { message: 'Value must be float' },
   )
   .transform((value) => parseFloat(value));
 
@@ -80,11 +75,11 @@ export const booleanStringSchema = z
   .transform((value) => value === 'true');
 
 export const cpfStringSchema = stringSchema.regex(
-  /^\d{3}\.\d{3}\.\d{3}-\d{2}$/
+  /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
 );
 
 export const phoneNumberStringSchema = stringSchema.regex(
-  /^\(\d{2}\) \d{5}-\d{4}$/
+  /^\(\d{2}\) \d{5}-\d{4}$/,
 );
 
 export const timeStringSchema = stringSchema.time({ precision: 3 });
@@ -101,7 +96,7 @@ export const futureDatetimeSchema = datetimeStringSchema.refine(
     // Verifica se a data inserida é posterior à data atual
     return datefyedValue > currentDate;
   },
-  { message: 'The date must be in the future' }
+  { message: 'The date must be in the future' },
 );
 
 /**
@@ -120,11 +115,11 @@ export const optionalStringToNumberSchema =
   createNullableTransform(stringToNumberSchema);
 
 export const optionalStringSchemaToLowerCase = optionalStringSchema.transform(
-  (val) => val?.toLocaleLowerCase()
+  (val) => val?.toLocaleLowerCase(),
 );
 
 export const optionalPhoneNumberStringSchema = createNullableTransform(
-  phoneNumberStringSchema
+  phoneNumberStringSchema,
 );
 
 export const optionalUuidSchema = createNullableTransform(uuidSchema);
@@ -138,7 +133,7 @@ export const optionalFloatNumberSchema =
   createNullableTransform(floatNumberSchema);
 
 export const optionalPaginationParamSchema = createNullableTransform(
-  paginationParamSchema
+  paginationParamSchema,
 );
 
 export const optionalSortSchema = createNullableTransform(sortSchema);
@@ -167,5 +162,5 @@ export const optionalStringToFloatSchema =
   createNullableTransform(stringToFloatSchema);
 
 export const optionalStringToIntegerSchema = createNullableTransform(
-  stringToIntegerSchema
+  stringToIntegerSchema,
 );

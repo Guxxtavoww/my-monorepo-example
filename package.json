@@ -1,6 +1,8 @@
 {
-  "name": "my-monorepo-example",
+  "name": "turborepo-shadcn-ui",
+  "version": "1.5.1",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
@@ -9,16 +11,14 @@
     "ui": "pnpm --filter @repo/ui ui"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "turbo": "^2.3.0",
-    "typescript": "5.5.4",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/shared": "workspace:*"
+    "prettier": "catalog:",
+    "turbo": "2.3.0"
   },
-  "packageManager": "pnpm@8.15.6",
+  "packageManager": "pnpm@9.12.0",
   "engines": {
-    "node": ">=18"
+    "node": ">=20.17.0"
   },
   "volta": {
     "node": "20.17.0",
