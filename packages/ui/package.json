@@ -12,6 +12,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/shared": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
     "autoprefixer": "^10",
