@@ -1,19 +1,10 @@
-import { del } from '@vercel/blob';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import {
-  ForbiddenException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 
-import {
-  applyQueryFilters,
-  applyOrderByFilters,
-} from '../../../utils/apply-query-filters.utils';
-import { PostService } from '../../post/services/post.service';
-import { PaginationService } from '../../../lib/pagination/pagination.service';
-import { NotFoundError } from '../../../lib/http-exceptions/errors/types/not-found-error';
+import { applyQueryFilters, applyOrderByFilters } from '@repo/shared';
+import { PaginationService } from '~/lib/pagination/pagination.service';
+import { NotFoundError } from '~/lib/http-exceptions/errors/types/not-found-error';
 
 import {
   User,
@@ -28,7 +19,6 @@ import type { PaginateUsersPayload } from '../dtos/paginate-users.dto';
 @Injectable()
 export class UserService {
   constructor(
-    private readonly postService: PostService,
     private readonly paginationService: PaginationService,
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
@@ -124,10 +114,6 @@ export class UserService {
       logged_in_user_id,
     );
 
-    if (payload.user_photo_url && userToUpdate.user_photo_url) {
-      await del(userToUpdate.user_photo_url);
-    }
-
     const userItem = await User.update(payload, userToUpdate.hashed_password);
 
     return this.userRepository.update(userToUpdate.id, userItem);
@@ -139,39 +125,6 @@ export class UserService {
       logged_in_user_id,
     );
 
-    const abortController = new AbortController();
-    const abortSignal = abortController.signal;
-
-    try {
-      const userPostsImages = await this.postService.getUsersPostsImages(
-        userToDelete.id,
-      );
-
-      if (userPostsImages.length && !abortSignal.aborted) {
-        await Promise.all(
-          userPostsImages.map(async (url) => {
-            return del(url.banner_url, { abortSignal });
-          }),
-        );
-      }
-
-      const [_, deleteResult] = await Promise.all([
-        userToDelete.user_photo_url
-          ? del(userToDelete.user_photo_url)
-          : undefined,
-        this.userRepository.delete(userToDelete.id),
-        this.postService.handleDeleteUserLikes(userToDelete.id),
-      ]);
-
-      return deleteResult;
-    } catch {
-      if (abortSignal.aborted) {
-        throw new InternalServerErrorException(
-          'Não foi possível deletar imagens',
-        );
-      }
-    } finally {
-      abortController.abort();
-    }
+    return this.userRepository.delete(userToDelete.id);
   }
 }

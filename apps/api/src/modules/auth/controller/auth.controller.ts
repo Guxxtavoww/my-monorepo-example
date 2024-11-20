@@ -1,13 +1,13 @@
 import { Body, Controller, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Public } from '../../../shared/decorators/auth.decorator';
-import { CreateUserDTO } from '../../user/dtos/create-user.dto';
-import { DataBaseInterceptorDecorator } from '../../../shared/decorators/database-interceptor.decorator';
+import { Public } from '~/decorators/auth.decorator';
+import { DataBaseInterceptorDecorator } from '~/decorators/database-interceptor.decorator';
 
 import { LoginDTO } from '../dtos/login.dto';
 import { AccessDTO } from '../dtos/access.dto';
 import { AuthService } from '../services/auth.service';
+import { CreateUserDTO } from '../../user/dtos/create-user.dto';
 
 @ApiTags('auth')
 @Controller('auth')

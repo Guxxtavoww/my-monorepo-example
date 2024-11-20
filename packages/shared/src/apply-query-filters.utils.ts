@@ -2,7 +2,7 @@ import type { ObjectLiteral, SelectQueryBuilder } from 'typeorm';
 
 import { isNullableValue } from './is-nullable-value.util';
 
-type Maybe<T> = T | null | undefined;
+export type Maybe<T> = T | null | undefined;
 
 export type DbExpression = 'LIKE' | '=' | '<' | '>' | '<=' | '>=';
 export type Filter<E extends ObjectLiteral> = Record<

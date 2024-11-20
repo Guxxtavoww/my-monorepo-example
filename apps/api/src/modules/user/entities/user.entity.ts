@@ -1,10 +1,7 @@
-import { Column, Entity, Index, OneToMany } from 'typeorm';
+import { Column, Entity, Index } from 'typeorm';
 
-import { Post } from '../../post/entities/post.entity';
-import { Base } from '../../../lib/database/entities/base.entity';
-import { PostLike } from '../../post-like/entities/post-like.entity';
-import { PostComment } from '../../post-comment/entities/post-comment.entity';
-import { BadRequestError } from '../../../lib/http-exceptions/errors/types/bad-request-error';
+import { Base } from '~/lib/database/entities/base.entity';
+import { BadRequestError } from '~/lib/http-exceptions/errors/types/bad-request-error';
 
 import type { UpdateUserPayload } from '../dtos/update-user.dto';
 import type { CreateUserPayload } from '../dtos/create-user.dto';
@@ -31,15 +28,6 @@ export class User extends Base {
 
   @Column('date', { nullable: true })
   date_of_birth: NullableValue<string>;
-
-  @OneToMany(() => Post, (post) => post.author)
-  posts: Post[];
-
-  @OneToMany(() => PostLike, (post) => post.user)
-  liked_posts: PostLike[];
-
-  @OneToMany(() => PostComment, (postC) => postC.commented_by)
-  comments: PostComment[];
 
   private static async handleCreateHashedPassword(
     password: string,

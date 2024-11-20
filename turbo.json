@@ -3,8 +3,23 @@
   "ui": "tui",
   "tasks": {
     "build": {
+      "env": [
+        "DATABASE_ROOT_PASSWORD",
+        "DATABASE_DATABASE_NAME",
+        "DB_PORT",
+        "DATABASE_HOST",
+        "DB_USER",
+        "JWT_SECRET",
+        "JWT_REFRESH_SECRET",
+        "JWT_REFRESH_EXPIRES_IN",
+        "JWT_EXPIRES_IN",
+        "JWT_AUDIENCE",
+        "JWT_ISSUER",
+        "PORT",
+        "NODE_ENV"
+      ],
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", ".env.local"],
       "outputs": [
         "build/**",
         ".vercel/**",
@@ -25,5 +40,6 @@
       "persistent": true,
       "dependsOn": ["^build"]
     }
-  }
+  },
+  "globalEnv": ["NODE_ENV"]
 }

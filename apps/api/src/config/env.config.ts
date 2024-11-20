@@ -6,7 +6,7 @@ import {
   optionalStringSchema,
   optionalUrlStringSchema,
   optionalStringToIntegerSchema,
-} from '../shared/schemas.shared';
+} from '@repo/shared';
 
 export const envSchema = z.object({
   DATABASE_ROOT_PASSWORD: stringSchema,
@@ -24,7 +24,7 @@ export const envSchema = z.object({
   JWT_AUDIENCE: optionalUrlStringSchema,
   JWT_EXPIRES_IN: stringSchema,
   PORT: optionalStringToIntegerSchema.default('5000'),
-  ENV: z.enum(['prod', 'dev']).default('dev'),
+  NODE_ENV: z.enum(['production', 'development']).default('development'),
   APP_PREFIX: optionalStringSchema.default('server'),
   BLOB_READ_WRITE_TOKEN: stringSchema,
 });
@@ -33,4 +33,4 @@ export type EnvType = z.infer<typeof envSchema>;
 
 export const ENV_VARIABLES = envSchema.parse(process.env);
 
-export const IS_DEV_ENV = ENV_VARIABLES.ENV === 'dev';
+export const IS_DEV_ENV = ENV_VARIABLES.NODE_ENV === 'development';

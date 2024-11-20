@@ -20,7 +20,10 @@
     "noUncheckedIndexedAccess": true,
     "incremental": false,
     "composite": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"],

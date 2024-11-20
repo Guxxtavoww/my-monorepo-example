@@ -9,11 +9,11 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Public } from '../../../shared/decorators/auth.decorator';
-import { UuidParam } from '../../../shared/decorators/uuid-param.decorator';
-import { ApiPaginationQuery } from '../../../shared/decorators/api-pagination-query.decorator';
-import { LoggedInUserIdDecorator } from '../../../shared/decorators/logged-in-user-id.decorator';
-import { DataBaseInterceptorDecorator } from '../../../shared/decorators/database-interceptor.decorator';
+import { Public } from '~/decorators/auth.decorator';
+import { UuidParam } from '~/decorators/uuid-param.decorator';
+import { ApiPaginationQuery } from '~/decorators/api-pagination-query.decorator';
+import { LoggedInUserIdDecorator } from '~/decorators/logged-in-user-id.decorator';
+import { DataBaseInterceptorDecorator } from '~/decorators/database-interceptor.decorator';
 
 import { UserService } from '../services/user.service';
 import { CreateUserDTO } from '../dtos/create-user.dto';
