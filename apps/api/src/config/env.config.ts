@@ -23,7 +23,6 @@ export const envSchema = z.object({
   PORT: optionalStringToIntegerSchema.default('5000'),
   NODE_ENV: z.enum(['production', 'development']).default('development'),
   APP_PREFIX: optionalStringSchema.default('server'),
-  BLOB_READ_WRITE_TOKEN: stringSchema,
 });
 
 export type EnvType = z.infer<typeof envSchema>;
