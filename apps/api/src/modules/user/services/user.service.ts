@@ -2,7 +2,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ForbiddenException, Injectable } from '@nestjs/common';
 
-import { applyQueryFilters, applyOrderByFilters } from '@repo/shared';
+import { applyQueryFilters, applyOrderByFilters } from '@repo/shared/index';
 import { PaginationService } from '~/lib/pagination/pagination.service';
 import { NotFoundError } from '~/lib/http-exceptions/errors/types/not-found-error';
 

@@ -4,7 +4,7 @@ import { APP_PIPE } from '@nestjs/core';
 import { ZodValidationPipe } from 'nestjs-zod';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ServeStaticModule } from '@nestjs/serve-static'
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { LogModule } from './lib/log/log.module';
 import { options } from './lib/database/database.providers';

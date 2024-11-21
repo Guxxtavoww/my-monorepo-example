@@ -7,7 +7,7 @@ import {
   type UseFormReturn,
 } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { ZodTypeDef, ZodSchema } from '@repo/shared';
+import type { ZodTypeDef, ZodSchema } from '@repo/shared/index';
 
 export function useFormWithSchema<
   TOutput extends FieldValues = FieldValues,

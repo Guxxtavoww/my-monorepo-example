@@ -1,4 +1,4 @@
-export * from './zod';
+export * from './zod.utils';
 export * from './date.utils';
 export * from './currency.util';
 export * from './catch-error.util';

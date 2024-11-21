@@ -6,16 +6,13 @@ import {
   optionalStringSchema,
   optionalUrlStringSchema,
   optionalStringToIntegerSchema,
-} from '@repo/shared';
+} from '@repo/shared/index';
 
 export const envSchema = z.object({
   DATABASE_ROOT_PASSWORD: stringSchema,
   DATABASE_DATABASE_NAME: stringSchema,
   DB_PORT: optionalStringToIntegerSchema.default('5432'),
   DATABASE_HOST: optionalStringSchema.default('localhost'),
-  // REDIS_HOST: optionalStringSchema.default('localhost'),
-  // REDIS_PASSWORD: stringSchema,
-  // REDIS_PORT: stringToIntegerSchema,
   DB_USER: stringSchema,
   JWT_SECRET: stringSchema,
   JWT_REFRESH_SECRET: stringSchema,

@@ -6,7 +6,7 @@ import {
   createPaginationSchema,
   optionalEmailStringSchema,
   optionalStringSchemaToLowerCase,
-} from '@repo/shared';
+} from '@repo/shared/index';
 
 export const paginateUsersSchema = createPaginationSchema({
   user_name: optionalStringSchemaToLowerCase,

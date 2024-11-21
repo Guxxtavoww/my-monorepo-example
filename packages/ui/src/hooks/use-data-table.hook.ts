@@ -21,7 +21,7 @@ import {
   z,
   optionalStringSchema,
   optionalStringToNumberSchema,
-} from '@repo/shared';
+} from '@repo/shared/index';
 
 import { useDebounce } from './use-debounce.hook';
 import { useSearchParamsManager } from './use-search-params-manager.hook';

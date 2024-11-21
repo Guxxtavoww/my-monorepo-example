@@ -50,7 +50,7 @@ export class AuthGuard implements CanActivate {
     } catch (error) {
       request[DECODED_TOKEN_KEY] = undefined;
 
-      this.logService.logger?.error('Invalid token', error.stack);
+      this.logService.logger?.error('Invalid token', error);
       throw new UnauthorizedException('Invalid Token!');
     }
   }

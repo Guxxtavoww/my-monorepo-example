@@ -6,7 +6,7 @@ import {
   optionalStringSchema,
   optionalUrlStringSchema,
   optionalEmailStringSchema,
-} from '@repo/shared';
+} from '@repo/shared/index';
 
 export const updateUserSchema = z.object({
   user_name: optionalStringSchema,

@@ -8,7 +8,7 @@ import {
   optionalDateStringSchema,
   optionalUrlStringSchema,
   optionalPhoneNumberStringSchema,
-} from '@repo/shared';
+} from '@repo/shared/index';
 
 export const createUserSchema = z.object({
   user_name: stringSchema,

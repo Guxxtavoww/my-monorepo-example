@@ -1,6 +1,6 @@
 import { z, type ZodSchema, type ZodTypeDef } from 'zod';
 
-import { isNullableValue } from './index';
+import { isNullableValue } from './is-nullable-value.util';
 
 export function createNullableTransform<
   TOutput = any,
@@ -9,7 +9,7 @@ export function createNullableTransform<
 >(schema: ZodSchema<TOutput, TDef, TInput>) {
   return schema
     .optional()
-    .nullable()
+    .nullable() 
     .transform((value) => (isNullableValue(value) ? undefined : value));
 }
 
