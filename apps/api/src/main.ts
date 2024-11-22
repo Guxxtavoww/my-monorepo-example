@@ -11,8 +11,6 @@ import { UnauthorizedInterceptor } from './lib/http-exceptions/errors/intercepto
 import { DataSourceInterceptor } from './lib/http-exceptions/errors/interceptors/conction-data-source.interceptor';
 
 async function bootstrap() {
-  Logger.log(JSON.stringify(process.env, null, 2))
-
   const app = await NestFactory.create(AppModule);
 
   try {
