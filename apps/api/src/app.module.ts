@@ -7,8 +7,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { LogModule } from './lib/log/log.module';
+import { ApiModule } from './modules/api.module';
 import { options } from './lib/database/database.providers';
-import { CommerceBlogModule } from './modules/commerce-blog.module';
 import { PaginationModule } from './lib/pagination/pagination.module';
 
 @Module({
@@ -19,7 +19,7 @@ import { PaginationModule } from './lib/pagination/pagination.module';
     }),
     TypeOrmModule.forRoot(options),
     ScheduleModule.forRoot(),
-    CommerceBlogModule,
+    ApiModule,
     PaginationModule,
     LogModule,
   ],

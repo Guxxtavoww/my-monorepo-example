@@ -12,4 +12,4 @@ import { HealthModule } from './health/health.module';
     HealthModule,
   ],
 })
-export class CommerceBlogModule {}
+export class ApiModule {}
