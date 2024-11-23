@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import type { IPaginationOptions } from 'nestjs-typeorm-paginate';
 
-import type { EnvType } from 'src/config/env.config';
+import type { EnvType } from '~/config/env.config';
 
 declare global {
   namespace NodeJS {
