@@ -13,10 +13,9 @@ export default function Home() {
   return (
     <main className="min-h-svh p-2 space-y-4">
       <h1>Welcome to the home page!</h1>
-      <Button variant="destructive" className="mr-5">Oi</Button>
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Open dialog</Button>
+          <Button variant="destructive">Open dialog</Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
